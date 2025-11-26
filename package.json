@@ -1,0 +1,16 @@
+{
+    "name": "smart-recipe-generator",
+    "version": "1.0.0",
+    "description": "AI-powered recipe generator",
+    "scripts": {
+        "install-client": "cd client && npm install",
+        "install-server": "cd server && npm install",
+        "install-all": "npm run install-client && npm run install-server",
+        "build": "cd client && npm run build",
+        "start": "cd server && node index.js",
+        "heroku-postbuild": "npm run install-client && npm run build"
+    },
+    "engines": {
+        "node": "18.x"
+    }
+}
