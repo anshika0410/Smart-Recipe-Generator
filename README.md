@@ -4,10 +4,15 @@ A modern web application that helps you discover recipes based on the ingredient
 
 ## Features
 
-*   **Ingredient-Based Search**: Simply enter the ingredients you have (e.g., "chicken, rice, broccoli") to find matching recipes.
-*   **Hybrid Search Engine**:
-    *   **Local Search**: Instantly retrieves recipes from a pre-defined collection if matches are found.
-    *   **AI Generation**: Uses **Google Gemini 2.0 Flash** to creatively generate new recipes if your ingredients don't match anything in the local database.
+*   **Ingredient-Based Search**:
+    The application's search engine is built for speed and reliability, **prioritizing the local database** to instantly retrieve curated recipes that match the user's ingredients. This ensures that common and popular dishes are served immediately without latency. The system only **falls back to the Google Gemini API** when no local matches are found, seamlessly generating unique, custom recipes to ensure the user always finds a solution.
+*   **Advanced Filtering & Customization**:
+    *   **Filters**: Refine your search by **Difficulty** (Easy, Medium, Hard), **Preparation Time**, and **Dietary Restrictions** (Vegetarian, Vegan, Gluten-Free, Dairy-Free).
+    *   **Serving Size**: Adjust the serving size to automatically scale ingredient quantities for your needs.
+*   **Interactive User Experience**:
+    *   **Rate & Favorite**: Rate recipes (1-5 stars) and save your favorites for quick access.
+    *   **Suggestions**: Get personalized recipe recommendations ("You Might Also Like") based on your ratings and favorites.
+    *   **Auto-Scroll**: The interface automatically scrolls to results upon searching for a seamless experience.
 *   **Responsive Design**: Built with React for a smooth experience on desktop and mobile.
 *   **Rich Recipe Details**: Displays ingredients, instructions, nutritional info, difficulty, and preparation time.
 
