@@ -13,26 +13,17 @@ app.use('/api/recipes', recipeRoutes);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-    // Set static folder
     app.use(express.static(path.join(__dirname, '../client/build')));
 
-    // Use regex literal for catch-all route in Express 5
+    // Catch-all route to serve React app
+    // Use regex literal to avoid Express 5 path-to-regexp errors
     app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
 }
 
-console.log("MONGO_URI:", process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => {
-        console.error("Failed to connect to MONGO_URI:", err.message);
-        // Fallback to local MongoDB
-        console.log("Attempting to connect to local MongoDB...");
-        mongoose.connect('mongodb://localhost:27017/recipeApp')
-            .then(() => console.log("Connected to local MongoDB"))
-            .catch(localErr => console.error("Local MongoDB failed:", localErr));
-    });
+// No MongoDB connection needed for this demo
+console.log('Skipping MongoDB connection.');
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
