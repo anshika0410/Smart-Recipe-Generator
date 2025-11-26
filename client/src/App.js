@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import InputSection from './components/InputSection';
 import RecipeCard from './components/RecipeCard';
@@ -13,6 +13,7 @@ function App() {
         dietary: []
     });
     const [servingSize, setServingSize] = useState(2); // Default serving size
+    const resultsRef = useRef(null);
 
     // Load default recipes and suggestions on start
     useEffect(() => {
@@ -36,6 +37,10 @@ function App() {
         try {
             const res = await axios.post('/api/recipes/search', { ingredients, filters });
             setRecipes(res.data);
+            // Scroll to results after a short delay to ensure rendering
+            setTimeout(() => {
+                resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         } catch (error) {
             console.error("Error fetching recipes", error);
         }
@@ -159,6 +164,19 @@ function App() {
                 </div>
             </div>
 
+            <h2 ref={resultsRef}>All Recipes</h2>
+            <div className="recipe-grid">
+                {recipes.map(recipe => (
+                    <RecipeCard
+                        key={recipe._id}
+                        recipe={recipe}
+                        onRate={handleRate}
+                        onFavorite={handleFavorite}
+                        servingSize={servingSize}
+                    />
+                ))}
+            </div>
+
             {suggestions.length > 0 && (
                 <div className="suggestions-section">
                     <h2>You Might Also Like</h2>
@@ -175,19 +193,6 @@ function App() {
                     </div>
                 </div>
             )}
-
-            <h2>All Recipes</h2>
-            <div className="recipe-grid">
-                {recipes.map(recipe => (
-                    <RecipeCard
-                        key={recipe._id}
-                        recipe={recipe}
-                        onRate={handleRate}
-                        onFavorite={handleFavorite}
-                        servingSize={servingSize}
-                    />
-                ))}
-            </div>
         </div>
     );
 }
