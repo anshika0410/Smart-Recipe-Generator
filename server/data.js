@@ -1,0 +1,204 @@
+const sampleRecipes = [
+    {
+        name: "Classic Spaghetti Carbonara",
+        image: "https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["spaghetti", "eggs", "pecorino cheese", "guanciale", "black pepper"],
+        instructions: ["Boil pasta.", "Fry guanciale.", "Mix eggs and cheese.", "Combine all with pasta water."],
+        nutrition: { calories: 600, protein: "25g", carbs: "70g" },
+        difficulty: "Medium",
+        time: 30,
+        dietary: []
+    },
+    {
+        name: "Avocado Toast with Poached Egg",
+        image: "https://loremflickr.com/800/600/avocado,toast",
+        ingredients: ["bread", "avocado", "eggs", "chili flakes", "lemon"],
+        instructions: ["Toast bread.", "Mash avocado with lemon.", "Poach egg.", "Assemble and season."],
+        nutrition: { calories: 350, protein: "12g", carbs: "30g" },
+        difficulty: "Easy",
+        time: 15,
+        dietary: ["Vegetarian"]
+    },
+    {
+        name: "Chicken Stir-Fry",
+        image: "https://loremflickr.com/800/600/chicken,stirfry",
+        ingredients: ["chicken breast", "soy sauce", "broccoli", "bell peppers", "garlic", "ginger"],
+        instructions: ["Cut chicken and veg.", "Stir fry chicken.", "Add veg and sauce.", "Serve over rice."],
+        nutrition: { calories: 450, protein: "40g", carbs: "15g" },
+        difficulty: "Easy",
+        time: 25,
+        dietary: ["Gluten-Free"]
+    },
+    {
+        name: "Vegetable Curry",
+        image: "https://loremflickr.com/800/600/vegetable,curry",
+        ingredients: ["chickpeas", "coconut milk", "curry powder", "spinach", "onion", "garlic"],
+        instructions: ["Sauté aromatics.", "Add spices.", "Simmer with coconut milk.", "Stir in spinach."],
+        nutrition: { calories: 400, protein: "15g", carbs: "45g" },
+        difficulty: "Medium",
+        time: 40,
+        dietary: ["Vegan", "Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Beef Tacos",
+        image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["ground beef", "taco shells", "lettuce", "cheddar cheese", "salsa", "cumin"],
+        instructions: ["Brown beef with spices.", "Warm shells.", "Assemble tacos with toppings."],
+        nutrition: { calories: 550, protein: "30g", carbs: "35g" },
+        difficulty: "Easy",
+        time: 20,
+        dietary: []
+    },
+    {
+        name: "Caprese Salad",
+        image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["mozzarella", "tomatoes", "fresh basil", "balsamic glaze", "olive oil"],
+        instructions: ["Slice tomatoes and cheese.", "Layer with basil.", "Drizzle with oil and balsamic."],
+        nutrition: { calories: 300, protein: "18g", carbs: "8g" },
+        difficulty: "Easy",
+        time: 10,
+        dietary: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Grilled Salmon with Asparagus",
+        image: "https://loremflickr.com/800/600/salmon,grilled",
+        ingredients: ["salmon fillet", "asparagus", "lemon", "butter", "garlic"],
+        instructions: ["Season salmon.", "Grill or pan-sear.", "Sauté asparagus in butter.", "Serve with lemon."],
+        nutrition: { calories: 500, protein: "45g", carbs: "5g" },
+        difficulty: "Medium",
+        time: 25,
+        dietary: ["Gluten-Free", "Pescatarian"]
+    },
+    {
+        name: "Pancakes",
+        image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["flour", "milk", "eggs", "baking powder", "sugar", "maple syrup"],
+        instructions: ["Mix batter.", "Cook on griddle.", "Flip when bubbly.", "Serve with syrup."],
+        nutrition: { calories: 500, protein: "10g", carbs: "80g" },
+        difficulty: "Easy",
+        time: 20,
+        dietary: ["Vegetarian"]
+    },
+    {
+        name: "Mushroom Risotto",
+        image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["arborio rice", "mushrooms", "vegetable broth", "parmesan", "onion", "white wine"],
+        instructions: ["Sauté onions and mushrooms.", "Toast rice.", "Add broth gradually.", "Finish with cheese."],
+        nutrition: { calories: 480, protein: "12g", carbs: "65g" },
+        difficulty: "Hard",
+        time: 50,
+        dietary: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Caesar Salad",
+        image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["romaine lettuce", "croutons", "parmesan cheese", "caesar dressing", "chicken breast"],
+        instructions: ["Chop lettuce.", "Grill chicken.", "Toss with dressing and croutons.", "Top with cheese."],
+        nutrition: { calories: 420, protein: "28g", carbs: "15g" },
+        difficulty: "Easy",
+        time: 20,
+        dietary: []
+    },
+    {
+        name: "Lentil Soup",
+        image: "https://loremflickr.com/800/600/lentil,soup",
+        ingredients: ["lentils", "carrots", "celery", "onion", "vegetable broth", "thyme"],
+        instructions: ["Sauté vegetables.", "Add lentils and broth.", "Simmer until tender.", "Season to taste."],
+        nutrition: { calories: 320, protein: "18g", carbs: "40g" },
+        difficulty: "Easy",
+        time: 45,
+        dietary: ["Vegan", "Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Beef Stir-Fry",
+        image: "https://loremflickr.com/800/600/beef,stirfry",
+        ingredients: ["beef strips", "broccoli", "soy sauce", "brown sugar", "ginger", "garlic"],
+        instructions: ["Sear beef.", "Stir fry broccoli.", "Add sauce ingredients.", "Toss to combine."],
+        nutrition: { calories: 480, protein: "35g", carbs: "20g" },
+        difficulty: "Medium",
+        time: 25,
+        dietary: ["Dairy-Free"]
+    },
+    {
+        name: "Greek Salad",
+        image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["cucumber", "tomato", "feta cheese", "olives", "red onion", "oregano"],
+        instructions: ["Chop veggies.", "Cube feta.", "Whisk olive oil dressing.", "Combine all."],
+        nutrition: { calories: 280, protein: "10g", carbs: "12g" },
+        difficulty: "Easy",
+        time: 15,
+        dietary: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Shakshuka",
+        image: "https://images.unsplash.com/photo-1590412200988-a436970781fa?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["eggs", "tomato sauce", "bell peppers", "onion", "cumin", "paprika"],
+        instructions: ["Simmer sauce with peppers.", "Crack eggs into sauce.", "Cover and cook.", "Serve with bread."],
+        nutrition: { calories: 350, protein: "16g", carbs: "25g" },
+        difficulty: "Medium",
+        time: 30,
+        dietary: ["Vegetarian"]
+    },
+    {
+        name: "Chocolate Chip Cookies",
+        image: "https://loremflickr.com/800/600/cookies,chocolate",
+        ingredients: ["flour", "sugar", "butter", "chocolate chips", "eggs", "vanilla"],
+        instructions: ["Cream butter and sugar.", "Mix dry ingredients.", "Fold in chips.", "Bake at 350°F."],
+        nutrition: { calories: 250, protein: "3g", carbs: "35g" },
+        difficulty: "Medium",
+        time: 40,
+        dietary: ["Vegetarian"]
+    },
+    {
+        name: "Quinoa Salad",
+        image: "https://loremflickr.com/800/600/quinoa,salad",
+        ingredients: ["quinoa", "chickpeas", "cucumber", "lemon", "parsley", "olive oil"],
+        instructions: ["Cook quinoa.", "Chop veggies.", "Mix dressing.", "Toss everything together."],
+        nutrition: { calories: 380, protein: "14g", carbs: "50g" },
+        difficulty: "Easy",
+        time: 25,
+        dietary: ["Vegan", "Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Fish Tacos",
+        image: "https://loremflickr.com/800/600/fish,tacos",
+        ingredients: ["white fish", "tortillas", "cabbage slaw", "lime", "sour cream"],
+        instructions: ["Season and pan-fry fish.", "Warm tortillas.", "Assemble with slaw and cream."],
+        nutrition: { calories: 400, protein: "25g", carbs: "35g" },
+        difficulty: "Medium",
+        time: 30,
+        dietary: ["Pescatarian"]
+    },
+    {
+        name: "Margherita Pizza",
+        image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["pizza dough", "tomato sauce", "mozzarella", "fresh basil"],
+        instructions: ["Stretch dough.", "Spread sauce.", "Top with cheese.", "Bake at high heat."],
+        nutrition: { calories: 600, protein: "20g", carbs: "70g" },
+        difficulty: "Medium",
+        time: 40,
+        dietary: ["Vegetarian"]
+    },
+    {
+        name: "Smoothie Bowl",
+        image: "https://images.unsplash.com/photo-1576186726580-a816e8b12896?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["frozen berries", "banana", "yogurt", "granola", "honey"],
+        instructions: ["Blend fruits and yogurt.", "Pour into bowl.", "Top with granola and honey."],
+        nutrition: { calories: 350, protein: "8g", carbs: "60g" },
+        difficulty: "Easy",
+        time: 10,
+        dietary: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+        name: "Teriyaki Chicken",
+        image: "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80",
+        ingredients: ["chicken thighs", "soy sauce", "mirin", "sugar", "sesame seeds"],
+        instructions: ["Make teriyaki sauce.", "Cook chicken.", "Glaze chicken with sauce.", "Serve with rice."],
+        nutrition: { calories: 500, protein: "35g", carbs: "25g" },
+        difficulty: "Medium",
+        time: 30,
+        dietary: ["Dairy-Free"]
+    }
+];
+
+module.exports = sampleRecipes;
