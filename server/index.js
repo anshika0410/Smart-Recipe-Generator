@@ -16,7 +16,8 @@ if (process.env.NODE_ENV === 'production') {
     // Set static folder
     app.use(express.static(path.join(__dirname, '../client/build')));
 
-    app.get('*', (req, res) => {
+    // Use regex literal for catch-all route in Express 5
+    app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
 }
