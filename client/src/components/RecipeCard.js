@@ -5,8 +5,9 @@ function RecipeCard({ recipe, onRate, onFavorite, servingSize }) {
     const [isFav, setIsFav] = useState(false);
 
     const handleRate = (r) => {
-        setRating(r);
-        if (onRate) onRate(recipe._id, r);
+        const newRating = r === rating ? 0 : r;
+        setRating(newRating);
+        if (onRate) onRate(recipe._id, newRating);
     };
 
     const toggleFav = () => {
