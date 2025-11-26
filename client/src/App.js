@@ -9,14 +9,14 @@ function App() {
 
     // Load default recipes on start
     useEffect(() => {
-        axios.get('http://localhost:5000/api/recipes')
+        axios.get('/api/recipes')
             .then(res => setRecipes(res.data))
             .catch(err => console.log(err));
     }, []);
 
     const searchRecipes = async (ingredients) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/recipes/search', { ingredients });
+            const res = await axios.post('/api/recipes/search', { ingredients });
             setRecipes(res.data);
         } catch (error) {
             console.error("Error fetching recipes", error);
